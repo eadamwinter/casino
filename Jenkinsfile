@@ -1,7 +1,7 @@
 pipeline {
     environment {
         // Define environment variables for the GitHub app credentials
-        GITHUB_APP_TOKEN = credentials('casino github app eadam jenkins winterro')
+        GITHUB_APP_TOKEN = credentials('jenkins-winterro-1')
         GITHUB_API_URL = 'https://api.github.com/repos'
         GITHUB_API_HEADERS = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_APP_TOKEN}'"
     }
