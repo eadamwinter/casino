@@ -6,6 +6,9 @@ pipeline {
         GITHUB_API_HEADERS = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_APP_TOKEN}'"
     }
     agent any
+    triggers {
+        cron('*/3 * * * *')
+    }
     stages {
         stage('Hello') {
             steps {
