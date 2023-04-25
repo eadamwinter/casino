@@ -12,7 +12,7 @@ pipeline {
                 echo 'Hello, world!'
                 // Set commit status to "pending"
                 sh """
-                    curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${sha} \
+                    curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
                     ${GITHUB_API_HEADERS} \
                     -d '{"state": "pending", "description": "Build in progress"}'
                 """
