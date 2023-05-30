@@ -39,21 +39,25 @@ pipeline {
                     -d '{"state": "pending", "description": "Build in progress"}'
                     """
 
-                    sh 'znowu polowa ale juz ku koncowi'
-                    sh 'bo'
-                    sh '$cos'
-                    sh '$GITHUB_API_HEADERS2'
+                    sh 'echo znowu polowa ale juz ku koncowi'
+                    sh 'echo bo'
                     
                     
                     sh """
                         curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
-                        ${GITHUB_API_HEADER2} \
+                        $chuj \
                         -d '{"state": "success", "description": "prrr zajebioza-to jest niemozliwe :P"}'
                     """
                 }
             }
         }
         stage('Hello_org') {
+            when {
+                expression {
+                    // Specify the condition to omit the stage
+                    return false // Omit the 'Test' stage
+                }
+            }
             steps {
                 echo 'to jest gitcommit : ${GIT_COMMIT}'
                 echo "${GIT_COMMIT}"
