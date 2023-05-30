@@ -9,10 +9,15 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'env.GITHUB_TOKEN')]) {
-                    sh 'echo $GITHUB_USERNAME'
-                    sh 'echo $GITHUB_TOKEN'
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
+                        sh 'echo $GITHUB_USERNAME'
+                        sh 'echo $GITHUB_TOKEN'
+                        env.GITHUB_TOKEN = $GITHUB_TOKEN
+                        def token = $GITHUB_TOKEN
+                    }
                 }
+                
                 echo 'to jest gitcommit : ${GIT_COMMIT}'
                 echo "${GIT_COMMIT}"
                 echo 'Hello, world!'
