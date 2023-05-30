@@ -12,15 +12,18 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_USERNAME'
                     sh 'echo $GITHUB_TOKEN'
-                    script {
-                        def token = env.GITHUB_TOKEN
-                        echo "token to ${token}"
-                        env.CHUJ = $token
-                    }
                     
-                    sh 'echo koniec withcredentiali'
-                    sh 'echo token to $token'
-                    sh 'echo ${env.CHUJ}'
+                    sh """
+                    curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
+                    ${GITHUB_API_HEADERS2} \
+                    -d '{"state": "pending", "description": "Build in progress"}'
+                    """
+
+                    sh """
+                        curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
+                        ${GITHUB_API_HEADER2} \
+                        -d '{"state": "success", "description": "prrr zajebioza-to jest niemozliwe :P"}'
+                    """
                 }
                 
                 echo 'to jest gitcommit : ${GIT_COMMIT}'
@@ -29,20 +32,33 @@ pipeline {
                 // Set commit status to "pending"
                 
                 sh """
-                echo "MY_VARIABLE in Another Step: ${env.CHUJ}"
+                echo "MY_VARIABLE in Another Step: ${env
+                
+                
+                .CHUJ}"
                 echo "token to $token"
                 
                 env.GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_TOKEN}'"
                 """
+                
+            }
+        }
+        stage('Hello_org') {
+            steps {
+                echo 'to jest gitcommit : ${GIT_COMMIT}'
+                echo "${GIT_COMMIT}"
+                echo 'Hello, world!'
+                // Set commit status to "pending"
+              
                 sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
-                    ${GITHUB_API_HEADERS2} \
+                    ${GITHUB_API_HEADERS} \
                     -d '{"state": "pending", "description": "Build in progress"}'
                 """
                 
                 sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
-                    ${GITHUB_API_HEADER2} \
+                    ${GITHUB_API_HEADER} \
                     -d '{"state": "success", "description": "prrr zajebioza-to jest niemozliwe :P"}'
                 """
             }
