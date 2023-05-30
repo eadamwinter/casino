@@ -15,10 +15,12 @@ pipeline {
                     script {
                         def token = env.GITHUB_TOKEN
                         echo "token to ${token}"
+                        env.CHUJ = $token
                     }
                     
                     sh 'echo koniec withcredentiali'
                     sh 'echo token to $token'
+                    sh 'echo ${env.CHUJ}'
                 }
                 
                 echo 'to jest gitcommit : ${GIT_COMMIT}'
@@ -27,7 +29,9 @@ pipeline {
                 // Set commit status to "pending"
                 
                 sh """
+                echo "MY_VARIABLE in Another Step: ${env.CHUJ}"
                 echo "token to $token"
+                
                 env.GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_TOKEN}'"
                 """
                 sh """
