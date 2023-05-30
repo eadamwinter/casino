@@ -16,7 +16,7 @@ pipeline {
                     sh 'echo polowa'
                     
                     sh """
-                    env.GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN
+                    env.GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN"
                     """
                     
                     sh """
