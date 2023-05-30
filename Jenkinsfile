@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'github-app-token', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
+                withCredentials([usernamePassword(credentialsId: 'casino_sprobuj', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_USERNAME'
                     sh 'echo $GITHUB_TOKEN'
                     sh 'env.lala = $GITHUB_TOKEN'
