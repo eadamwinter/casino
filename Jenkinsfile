@@ -12,7 +12,9 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_USERNAME'
                     sh 'echo $GITHUB_TOKEN'
-                    sh 'def token = $GITHUB_TOKEN'
+                    script {
+                        def token = $GITHUB_TOKEN
+                    }
                 }
                 
                 echo 'to jest gitcommit : ${GIT_COMMIT}'
