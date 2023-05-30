@@ -15,12 +15,13 @@ pipeline {
                     
                     sh 'echo polowa'
                     
-                    sh """
+                    sh '''
                     cos="lala"
                     GITHUB_API_HEADERS2="-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN"
-                    echo 'cos to $cos'
+                    echo $cos
+                    echo "cos to $cos"
+                    '''
                     
-                    """
                     script {
                         env.chuj="-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN"
                         echo "${env.chuj}"
