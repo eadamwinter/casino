@@ -24,10 +24,16 @@ pipeline {
                     
                     sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
-                    ${GITHUB_API_HEADERS2} \
+                    $GITHUB_API_HEADERS2 \
                     -d '{"state": "pending", "description": "Build in progress"}'
                     """
 
+                    sh 'znowu polowa ale juz ku koncowi'
+                    sh 'bo'
+                    sh '$cos'
+                    sh '$GITHUB_API_HEADERS2'
+                    
+                    
                     sh """
                         curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
                         ${GITHUB_API_HEADER2} \
