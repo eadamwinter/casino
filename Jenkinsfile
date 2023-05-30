@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
+                withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'env.GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_USERNAME'
                     sh 'echo $GITHUB_TOKEN'
                 }
@@ -19,7 +19,8 @@ pipeline {
                 // Set commit status to "pending"
                 
                 sh """
-                GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_TOKEN}'"
+                echo "${GITHUB_TOKEN}"
+                env.GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_TOKEN}'"
                 """
                 sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
