@@ -12,9 +12,6 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_USERNAME'
                     sh 'echo $GITHUB_TOKEN'
-                    environment {
-                        GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_APP_TOKEN}'"
-                    }
                     
                     sh 'echo polowa'
                     
