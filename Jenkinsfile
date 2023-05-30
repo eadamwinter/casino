@@ -16,8 +16,10 @@ pipeline {
                     sh 'echo polowa'
                     
                     sh """
-                    env.GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN"
+                    GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN"
                     """
+                    
+                    sh 'echo koncowa'
                     
                     sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
