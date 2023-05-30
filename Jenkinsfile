@@ -11,9 +11,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
-                        sh 'echo $GITHUB_USERNAME'
-                        sh 'echo $GITHUB_TOKEN'
-                        env.GITHUB_TOKEN = $GITHUB_TOKEN
+                        echo "$GITHUB_USERNAME lallala"
+                        echo "$GITHUB_TOKEN hohoho"
+                        env.GITHUB_TOKEN = ${GITHUB_TOKEN}
                         def token = $GITHUB_TOKEN
                     }
                 }
