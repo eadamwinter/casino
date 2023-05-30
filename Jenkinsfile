@@ -18,7 +18,9 @@ pipeline {
                 echo 'Hello, world!'
                 // Set commit status to "pending"
                 
+                sh """
                 GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_TOKEN}'"
+                """
                 sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
                     ${GITHUB_API_HEADERS2} \
