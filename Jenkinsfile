@@ -15,6 +15,8 @@ pipeline {
                     script {
                         def token = $GITHUB_TOKEN
                     }
+                    
+                    sh 'echo koniec withcredentiali'
                 }
                 
                 echo 'to jest gitcommit : ${GIT_COMMIT}'
