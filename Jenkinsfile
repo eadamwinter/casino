@@ -12,6 +12,15 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_USERNAME'
                     sh 'echo $GITHUB_TOKEN'
+                    environment {
+                        GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_APP_TOKEN}'"
+                    }
+                    
+                    sh 'echo polowa'
+                    
+                    sh """
+                    env.GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN
+                    """
                     
                     sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
@@ -25,22 +34,6 @@ pipeline {
                         -d '{"state": "success", "description": "prrr zajebioza-to jest niemozliwe :P"}'
                     """
                 }
-                
-                echo 'to jest gitcommit : ${GIT_COMMIT}'
-                echo "${GIT_COMMIT}"
-                echo 'Hello, world!'
-                // Set commit status to "pending"
-                
-                sh """
-                echo "MY_VARIABLE in Another Step: ${env
-                
-                
-                .CHUJ}"
-                echo "token to $token"
-                
-                env.GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_TOKEN}'"
-                """
-                
             }
         }
         stage('Hello_org') {
