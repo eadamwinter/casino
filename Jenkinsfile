@@ -1,7 +1,7 @@
 pipeline {
     environment {
         // Define environment variables for the GitHub app credentials
-        GITHUB_APP_TOKEN = credentials('secret_casino')
+        GITHUB_APP_TOKEN = credentials('sprobuj_casino')
         GITHUB_API_URL = 'https://api.github.com/repos'
         GITHUB_API_HEADERS = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_APP_TOKEN}'"
     }
@@ -22,7 +22,7 @@ pipeline {
                 sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
                     ${GITHUB_API_HEADERS} \
-                    -d '{"state": "error", "description": "prrr zajebioza-to jest niemozliwe :P"}'
+                    -d '{"state": "success", "description": "prrr zajebioza-to jest niemozliwe :P"}'
                 """
             }
         }
