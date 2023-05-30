@@ -12,7 +12,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                         echo "$GITHUB_USERNAME lallala"
-                        echo "$GITHUB_TOKEN hohoho"
+                        echo "${GITHUB_TOKEN} hohoho"
                         
                         def token = $GITHUB_TOKEN
                     }
