@@ -10,42 +10,19 @@ pipeline {
         stage('Hello') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'sprobuj_casino', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
-                    sh 'echo $GITHUB_USERNAME'
-                    sh 'echo $GITHUB_TOKEN'
-                    
-                    sh 'echo polowa'
-                    
-                    sh '''
-                    cos="lala"
-                    GITHUB_API_HEADERS2="-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN"
-                    echo $cos
-                    echo "cos to $cos"
-                    '''
-                    
                     script {
-                        env.chuj="-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN'"
-                        echo "${env.chuj}"
-                        echo "to jest chuj : ${chuj}"
-                        echo "przeszedl skrypt"
+                        env.github_headers="-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN'"
                     }
-                    
-                    
-                    sh 'echo koncowa'
-                    sh 'echo $chuj'
                     
                     sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
-                    $chuj \
+                    $github_headers \
                     -d '{"state": "pending", "description": "Build in progress"}'
                     """
-
-                    sh 'echo znowu polowa ale juz ku koncowi'
-                    sh 'echo bo'
-                    
                     
                     sh """
                         curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
-                        $chuj \
+                        $github_headers \
                         -d '{"state": "success", "description": "prrr zajebioza-to jest niemozliwe :P"}'
                     """
                 }
