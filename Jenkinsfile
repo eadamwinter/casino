@@ -23,7 +23,7 @@ pipeline {
                     '''
                     
                     script {
-                        env.chuj="-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN"
+                        env.chuj="-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN'"
                         echo "${env.chuj}"
                         echo "to jest chuj : ${chuj}"
                         echo "przeszedl skrypt"
