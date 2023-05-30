@@ -25,6 +25,8 @@ pipeline {
                     script {
                         env.chuj="-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer $GITHUB_TOKEN"
                         echo "${env.chuj}"
+                        echo "${chuj}"
+                        echo "przeszedl skrypt"
                     }
                     
                     
@@ -32,7 +34,7 @@ pipeline {
                     
                     sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
-                    $GITHUB_API_HEADERS2 \
+                    ${GITHUB_API_HEADERS2} \
                     -d '{"state": "pending", "description": "Build in progress"}'
                     """
 
