@@ -13,10 +13,11 @@ pipeline {
                     sh 'echo $GITHUB_USERNAME'
                     sh 'echo $GITHUB_TOKEN'
                     script {
-                        def token = $GITHUB_TOKEN
+                        def token = env.GITHUB_TOKEN
                     }
                     
                     sh 'echo koniec withcredentiali'
+                    sh 'echo token to $token'
                 }
                 
                 echo 'to jest gitcommit : ${GIT_COMMIT}'
