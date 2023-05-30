@@ -24,7 +24,7 @@ pipeline {
                 // Set commit status to "pending"
                 
                 sh """
-                echo "${GITHUB_TOKEN}"
+                echo "token to $token"
                 env.GITHUB_API_HEADERS2 = "-H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${GITHUB_TOKEN}'"
                 """
                 sh """
