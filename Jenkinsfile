@@ -22,7 +22,7 @@ pipeline {
                 sh """
                     curl -sSL -X POST ${GITHUB_API_URL}/eadamwinter/casino/statuses/${GIT_COMMIT} \
                     ${GITHUB_API_HEADERS} \
-                    -d '{"state": "success", "description": "zajebioza"}'
+                    -d '{"state": "success", "description": "zajebioza-to jest niemozliwe :P"}'
                 """
             }
         }
