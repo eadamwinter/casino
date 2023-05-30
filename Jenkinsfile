@@ -10,6 +10,7 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'to jest gitcommit : ${GIT_COMMIT}'
+                echo ${GIT_COMMIT}
                 echo 'Hello, world!'
                 // Set commit status to "pending"
                 sh """
