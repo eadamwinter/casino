@@ -14,6 +14,7 @@ pipeline {
                     sh 'echo $GITHUB_TOKEN'
                     script {
                         def token = env.GITHUB_TOKEN
+                        echo "token to ${token}"
                     }
                     
                     sh 'echo koniec withcredentiali'
